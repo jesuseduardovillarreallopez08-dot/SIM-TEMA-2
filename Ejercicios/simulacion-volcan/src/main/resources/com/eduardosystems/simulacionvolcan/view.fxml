@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane style="-fx-background-color: #121212;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.eduardosystems.simulacionvolcan.controller.VolcanController">
+    <top>
+        <VBox spacing="6.0" style="-fx-background-color: #1e1e1e; -fx-padding: 8;">
+            <children>
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <children>
+                        <VBox HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label text="MONITOR VOLCÁNICO POPOCATÉPETL" textFill="#ff5722">
+                                    <font>
+                                        <Font name="System Bold" size="15.0" />
+                                    </font>
+                                </Label>
+                                <Label fx:id="lblEstado" text="Paso: 0 | Impacto Total: 0.0%" textFill="#e0e0e0">
+                                    <font>
+                                        <Font size="12.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </VBox>
+                        <HBox alignment="CENTER_RIGHT" spacing="8.0">
+                            <children>
+                                <Button fx:id="btnAuto" mnemonicParsing="false" onAction="#handleToggleAuto" style="-fx-background-color: #2e7d32; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" text="AUTO: PLAY" />
+                                <Button mnemonicParsing="false" onAction="#handleAvanzarPaso" style="-fx-background-color: #e65100; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" text="PASO MANUAL" />
+                                <Button mnemonicParsing="false" onAction="#handleReiniciar" style="-fx-background-color: #37474f; -fx-text-fill: white; -fx-cursor: hand;" text="REINICIAR" />
+                            </children>
+                        </HBox>
+                    </children>
+                </HBox>
+
+                <!-- Panel de Parámetros -->
+                <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-background-color: #263238; -fx-background-radius: 5; -fx-padding: 6;">
+                    <children>
+                        <Label text="Parámetros:" textFill="#ffe082">
+                            <font><Font name="System Bold" size="11.0" /></font>
+                        </Label>
+                        <HBox alignment="CENTER_LEFT" spacing="3.0">
+                            <children>
+                                <Label text="Personas:" textFill="#81d4fa" />
+                                <TextField fx:id="txtPersonas" prefWidth="50.0" text="150" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="3.0">
+                            <children>
+                                <Label text="Ganado:" textFill="#a5d6a7" />
+                                <TextField fx:id="txtGanado" prefWidth="50.0" text="80" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="3.0">
+                            <children>
+                                <Label text="Fauna:" textFill="#ffab91" />
+                                <TextField fx:id="txtFauna" prefWidth="50.0" text="60" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" spacing="3.0">
+                            <children>
+                                <Label text="Vel. Lava (km/h):" textFill="#ff7043">
+                                    <font><Font name="System Bold" size="11.0" /></font>
+                                </Label>
+                                <TextField fx:id="txtVelocidadLava" prefWidth="50.0" text="25" />
+                            </children>
+                        </HBox>
+                        <Button mnemonicParsing="false" onAction="#handleAplicarPoblacion" style="-fx-background-color: #0288d1; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" text="APLICAR Y REINICIAR" />
+                    </children>
+                </HBox>
+
+                <!-- Tarjetas de Métricas -->
+                <HBox alignment="CENTER" spacing="10.0">
+                    <children>
+                        <VBox alignment="CENTER" prefWidth="230.0" style="-fx-background-color: #263238; -fx-background-radius: 5; -fx-padding: 4;">
+                            <children>
+                                <Label text="PERSONAS A SALVO" textFill="#81d4fa">
+                                    <font><Font name="System Bold" size="10.0" /></font>
+                                </Label>
+                                <Label fx:id="lblPersonas" text="0 / 0 (100.0%)" textFill="#ffffff">
+                                    <font><Font name="System Bold" size="13.0" /></font>
+                                </Label>
+                            </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefWidth="230.0" style="-fx-background-color: #263238; -fx-background-radius: 5; -fx-padding: 4;">
+                            <children>
+                                <Label text="CASAS Y ESTRUCTURAS" textFill="#a5d6a7">
+                                    <font><Font name="System Bold" size="10.0" /></font>
+                                </Label>
+                                <Label fx:id="lblCasas" text="0 / 0 (100.0%)" textFill="#ffffff">
+                                    <font><Font name="System Bold" size="13.0" /></font>
+                                </Label>
+                            </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefWidth="230.0" style="-fx-background-color: #263238; -fx-background-radius: 5; -fx-padding: 4;">
+                            <children>
+                                <Label text="GANADO Y FAUNA SILVESTRE" textFill="#ffe082">
+                                    <font><Font name="System Bold" size="10.0" /></font>
+                                </Label>
+                                <Label fx:id="lblAnimales" text="0 / 0 (100.0%)" textFill="#ffffff">
+                                    <font><Font name="System Bold" size="13.0" /></font>
+                                </Label>
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </top>
+    <center>
+        <Pane fx:id="contenedorCanvas" style="-fx-background-color: #000000;" BorderPane.alignment="CENTER">
+            <children>
+                <Canvas fx:id="canvasMapa" />
+            </children>
+        </Pane>
+    </center>
+    <bottom>
+        <VBox style="-fx-background-color: #1e1e1e; -fx-padding: 6;" BorderPane.alignment="CENTER">
+            <children>
+                <Label text="Historial de Registro Eruptivo" textFill="#b0bec5">
+                    <font>
+                        <Font name="System Bold" size="11.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets bottom="2.0" />
+                    </VBox.margin>
+                </Label>
+                <TableView fx:id="tablaHistorial" prefHeight="85.0" style="-fx-background-color: #263238;">
+                    <columns>
+                        <TableColumn fx:id="colId" prefWidth="45.0" text="ID" />
+                        <TableColumn fx:id="colPaso" prefWidth="50.0" text="Paso" />
+                        <TableColumn fx:id="colPersonas" prefWidth="170.0" text="Personas Vivas" />
+                        <TableColumn fx:id="colCasas" prefWidth="180.0" text="Casas Intactas" />
+                        <TableColumn fx:id="colAnimales" prefWidth="180.0" text="Animales Vivos" />
+                        <TableColumn fx:id="colDestruccion" prefWidth="140.0" text="Daño Total (%)" />
+                    </columns>
+                </TableView>
+            </children>
+        </VBox>
+    </bottom>
+</BorderPane>
